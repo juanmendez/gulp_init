@@ -1,0 +1,1 @@
+"# gulp_init"  initgit add README.mdgit commit -m "first commit"git remote add origin git@github.com:juanmendez/gulp_init.gitgit push -u origin master

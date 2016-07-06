@@ -1,0 +1,13 @@
+node_modules
+bower_components
+coverage
+target
+.DS_Store
+**/.DS_Store
+.tmp/
+*.versionsBackup
+*.iml
+build
+.idea
+assets/concat
+npm-debug.log
