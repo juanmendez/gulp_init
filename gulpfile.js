@@ -60,13 +60,27 @@ var log = function( msg ){
  });
 
 gulp.task( 'clean-styles', function(done){
-    var files = config.css + "/**/*.css";
+    var files = config.css + "**/*.css";
     clean( files, done  );
 });
 
 
 gulp.task( "sass-watcher", function(){
         gulp.watch( [config.sass], ['styles'] );
+});
+
+
+gulp.task( 'wiredep', function(){
+
+    var options  = config.getWiredepDefaultOptions();
+    var wiredep = require( 'wiredep' ).stream;
+
+    return gulp
+        .src( config.index )
+        .pipe( wiredep( options ) )
+        .pipe( $.inject( gulp.src( config.js)))
+        .pipe( gulp.dest(config.client ) );
+
 });
 
 function clean( path, done ){

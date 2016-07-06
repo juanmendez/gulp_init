@@ -1,0 +1,21 @@
+{
+  "name": "react_trials",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Juan Mendez <contact@juanmendez.info>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/juanmendez/gulp_init",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "toastr": "^2.1.2"
+  }
+}
