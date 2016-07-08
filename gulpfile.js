@@ -24,8 +24,6 @@ var $ = require( 'gulp-load-plugins')({lazy:true});
          /** plumber can be a lot easier to show bugs than errorLog**/
          .pipe( $.plumber() )
          .pipe($.sass() )
-         /**we give preference to plumber**/
-         // .on('error', utils.errorLogger )
          .pipe( $.autoprefixer({browsers:['last 2 versions', '> 5%']}))
          .pipe( gulp.dest(config.css));
 
@@ -54,4 +52,31 @@ gulp.task( 'wiredep', function(){
         .pipe( $.inject( gulp.src( config.js)))
         .pipe( gulp.dest(config.client ) );
 
+});
+
+gulp.task( 'inject', ['wiredep', 'styles'], function(){
+   utils.log( "wire up the app css into the html, and call wiredep");
+
+
+    return gulp.src( config.index)
+        .pipe( $.inject( gulp.src( config.css )))
+        .pipe(  gulp.dest( config.client ) );
+});
+
+
+var port = process.env.PORT || config.defaultPort;
+
+gulp.task( 'servedev', ['inject'], function(){
+
+    var nodeOptions = {
+        script: config.nodeServer,
+        delayTime: 1,
+        env:{
+            'PORT': port,
+            'NODE_ENV': isDev ? 'dev':'build'
+        },
+        watch: [config.server]
+    };
+
+    return $.nodemon( nodeOptions );
 });

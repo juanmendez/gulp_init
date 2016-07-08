@@ -4,7 +4,6 @@
 module.exports = function(){
     var del = require( 'del' );
     var $ = require( 'gulp-load-plugins')({lazy:true});
-    
     var utils = {};
 
     utils.clean = function( path, done ){
